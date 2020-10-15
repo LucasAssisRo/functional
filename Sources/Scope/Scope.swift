@@ -1,3 +1,5 @@
+import Foundation
+
 public protocol Scope {}
 
 public extension Scope {
@@ -22,4 +24,4 @@ public extension Scope where Self: AnyObject {
 
 
 
-public extension NSObject: Scope {}
+extension NSObject: Scope {}

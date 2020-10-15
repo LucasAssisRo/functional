@@ -10,5 +10,8 @@ let package = Package(
             name: "Scope",
             targets: ["Scope"]
         ),
+    ],
+    targets: [
+        .target(name: "Scope")
     ]
 )
