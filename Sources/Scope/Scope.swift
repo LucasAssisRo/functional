@@ -4,7 +4,7 @@ public protocol Scope {}
 
 public extension Scope {
     @inline(__always)
-    func map<Tranformed>(block: (Self) throws -> Tranformed) rethrows -> Tranformed { try block(self) }
+    func `let`<Tranformed>(block: (Self) throws -> Tranformed) rethrows -> Tranformed { try block(self) }
 
     @inline(__always)
     func appling(block: (inout Self) throws -> Void) rethrows -> Self {
