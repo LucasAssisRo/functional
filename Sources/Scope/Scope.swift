@@ -19,7 +19,7 @@ public extension Scope where Self: AnyObject {
 
 // MARK: - Functional
 
-public protocol Functional {}
+public protocol Functional: Scope {}
 
 public extension Functional {
     func takeIf(_ block: (Self) -> Bool) -> Self? { block(self) ? self : nil }
