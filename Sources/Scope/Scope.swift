@@ -1,5 +1,3 @@
-import Foundation
-
 // MARK: - Scope
 
 public protocol Scope {}
@@ -28,10 +26,6 @@ public extension Functional {
     func takeIfNot(_ block: (Self) -> Bool) -> Self? { !block(self) ? self : nil }
 }
 
-// MARK: - NSObject + Functional
-
-extension NSObject: Functional {}
-
 // MARK: - Int + Functional
 
 extension Int: Functional {}
@@ -39,10 +33,6 @@ extension Int: Functional {}
 // MARK: - Int64 + Functional
 
 extension Int64: Functional {}
-
-// MARK: - CGFloat + Functional
-
-extension CGFloat: Functional {}
 
 // MARK: - Double + Functional
 
@@ -60,14 +50,30 @@ extension Array: Functional {}
 
 extension Dictionary: Functional {}
 
-// MARK: - CGSize + Functional
-
-extension CGSize: Functional {}
-
-// MARK: - CGRect + Functional
-
-extension CGRect: Functional {}
-
 // MARK: - Result + Functional
 
 extension Result: Functional {}
+
+#if canImport(Foundation)
+    import Foundation
+
+    // MARK: - NSObject + Functional
+
+    extension NSObject: Functional {}
+#endif
+
+#if canImport(UIKit)
+    import UIKit
+
+    // MARK: - CGFloat + Functional
+
+    extension CGFloat: Functional {}
+
+    // MARK: - CGSize + Functional
+
+    extension CGSize: Functional {}
+
+    // MARK: - CGRect + Functional
+
+    extension CGRect: Functional {}
+#endif
