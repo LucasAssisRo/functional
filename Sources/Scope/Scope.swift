@@ -1,27 +1,73 @@
 import Foundation
 
+// MARK: - Scope
+
 public protocol Scope {}
 
 public extension Scope {
+    @inlinable
     @inline(__always)
-    func `let`<Tranformed>(block: (Self) throws -> Tranformed) rethrows -> Tranformed { try block(self) }
-
-    @inline(__always)
-    func appling(block: (inout Self) throws -> Void) rethrows -> Self {
-        var mutaded = self
-        try block(&mutaded)
-        return mutaded
-    }
+    func `let`<Tranformed>(_ block: (Self) throws -> Tranformed) rethrows -> Tranformed { try block(self) }
 }
 
 public extension Scope where Self: AnyObject {
+    @inlinable
     @inline(__always)
-    func apply(block: (Self) throws -> Void) rethrows -> Self {
+    func apply(_ block: (Self) throws -> Void) rethrows -> Self {
         try block(self)
         return self
     }
 }
 
+// MARK: - Functional
 
+public protocol Functional {}
 
-extension NSObject: Scope {}
+public extension Functional {
+    func takeIf(_ block: (Self) -> Bool) -> Self? { block(self) ? self : nil }
+    func takeIfNot(_ block: (Self) -> Bool) -> Self? { !block(self) ? self : nil }
+}
+
+// MARK: - NSObject + Functional
+
+extension NSObject: Functional {}
+
+// MARK: - Int + Functional
+
+extension Int: Functional {}
+
+// MARK: - Int64 + Functional
+
+extension Int64: Functional {}
+
+// MARK: - CGFloat + Functional
+
+extension CGFloat: Functional {}
+
+// MARK: - Double + Functional
+
+extension Double: Functional {}
+
+// MARK: - String + Functional
+
+extension String: Functional {}
+
+// MARK: - Array + Functional
+
+extension Array: Functional {}
+
+// MARK: - Dictionary + Functional
+
+extension Dictionary: Functional {}
+
+// MARK: - CGSize + Functional
+
+extension CGSize: Functional {}
+
+// MARK: - CGRect + Functional
+
+extension CGRect: Functional {}
+
+// MARK: - Result + Functional
+
+extension Result: Functional {}
