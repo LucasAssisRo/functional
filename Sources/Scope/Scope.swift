@@ -60,6 +60,14 @@ extension Result: Functional {}
     // MARK: - NSObject + Functional
 
     extension NSObject: Functional {}
+
+    // MARK: - URL + Functional
+
+    extension URL: Functional {}
+
+    // MARK: - Date + Functional
+
+    extension Date: Functional {}
 #endif
 
 #if canImport(UIKit)
