@@ -3,20 +3,9 @@
 public protocol Scope {}
 
 public extension Scope {
-    @inlinable
-    @inline(__always)
-    func `let`<Tranformed>(_ block: (Self) throws -> Tranformed) rethrows -> Tranformed { try block(self) }
-
-    @inlinable
-    @inline(__always)
     func takeIf(_ block: (Self) -> Bool) -> Self? { block(self) ? self : nil }
-
-    @inlinable
-    @inline(__always)
     func takeIfNot(_ block: (Self) -> Bool) -> Self? { !block(self) ? self : nil }
-
-    @inlinable
-    @inline(__always)
+    func `let`<Tranformed>(_ block: (Self) throws -> Tranformed) rethrows -> Tranformed { try block(self) }
     func also(_ block: (inout Self) throws -> Void) rethrows -> Self {
         var new = self
         try block(&new)
@@ -24,9 +13,9 @@ public extension Scope {
     }
 }
 
+// MARK: - Scope + AnyObject
+
 public extension Scope where Self: AnyObject {
-    @inlinable
-    @inline(__always)
     func also(_ block: (Self) throws -> Void) rethrows -> Self {
         try block(self)
         return self
