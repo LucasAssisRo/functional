@@ -6,82 +6,47 @@ public extension Scope {
     @inlinable
     @inline(__always)
     func `let`<Tranformed>(_ block: (Self) throws -> Tranformed) rethrows -> Tranformed { try block(self) }
-}
 
-public extension Scope where Self: AnyObject {
     @inlinable
     @inline(__always)
-    func apply(_ block: (Self) throws -> Void) rethrows -> Self {
-        try block(self)
+    func takeIf(_ block: (Self) -> Bool) -> Self? { block(self) ? self : nil }
+
+    @inlinable
+    @inline(__always)
+    func takeIfNot(_ block: (Self) -> Bool) -> Self? { !block(self) ? self : nil }
+
+    @inlinable
+    @inline(__always)
+    mutating func also(_ block: (inout Self) throws -> Void) rethrows -> Self {
+        try block(&self)
         return self
     }
 }
 
-// MARK: - Functional
+// MARK: - Int + Scope
 
-public protocol Functional: Scope {}
+extension Int: Scope {}
 
-public extension Functional {
-    func takeIf(_ block: (Self) -> Bool) -> Self? { block(self) ? self : nil }
-    func takeIfNot(_ block: (Self) -> Bool) -> Self? { !block(self) ? self : nil }
-}
+// MARK: - Int64 + Scope
 
-// MARK: - Int + Functional
+extension Int64: Scope {}
 
-extension Int: Functional {}
+// MARK: - Double + Scope
 
-// MARK: - Int64 + Functional
+extension Double: Scope {}
 
-extension Int64: Functional {}
+// MARK: - String + Scope
 
-// MARK: - Double + Functional
+extension String: Scope {}
 
-extension Double: Functional {}
+// MARK: - Array + Scope
 
-// MARK: - String + Functional
+extension Array: Scope {}
 
-extension String: Functional {}
+// MARK: - Dictionary + Scope
 
-// MARK: - Array + Functional
+extension Dictionary: Scope {}
 
-extension Array: Functional {}
+// MARK: - Result + Scope
 
-// MARK: - Dictionary + Functional
-
-extension Dictionary: Functional {}
-
-// MARK: - Result + Functional
-
-extension Result: Functional {}
-
-#if canImport(Foundation)
-    import Foundation
-
-    // MARK: - NSObject + Functional
-
-    extension NSObject: Functional {}
-
-    // MARK: - URL + Functional
-
-    extension URL: Functional {}
-
-    // MARK: - Date + Functional
-
-    extension Date: Functional {}
-#endif
-
-#if canImport(UIKit)
-    import UIKit
-
-    // MARK: - CGFloat + Functional
-
-    extension CGFloat: Functional {}
-
-    // MARK: - CGSize + Functional
-
-    extension CGSize: Functional {}
-
-    // MARK: - CGRect + Functional
-
-    extension CGRect: Functional {}
-#endif
+extension Result: Scope {}
