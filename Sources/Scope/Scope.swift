@@ -17,8 +17,18 @@ public extension Scope {
 
     @inlinable
     @inline(__always)
-    mutating func also(_ block: (inout Self) throws -> Void) rethrows -> Self {
-        try block(&self)
+    func also(_ block: (inout Self) throws -> Void) rethrows -> Self {
+        var new = self
+        try block(&new)
+        return new
+    }
+}
+
+public extension Scope where Self: AnyObject {
+    @inlinable
+    @inline(__always)
+    func also(_ block: (Self) throws -> Void) rethrows -> Self {
+        try block(self)
         return self
     }
 }
