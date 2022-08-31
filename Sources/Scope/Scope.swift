@@ -4,7 +4,21 @@ public protocol Scope {}
 
 public extension Scope {
     func takeIf(_ block: (Self) -> Bool) -> Self? { block(self) ? self : nil }
+    func takeIf<Property>(
+        _ keyPath: KeyPath<Self, Property>,
+        _ block: (Property) -> Bool
+    ) -> Self? {
+        block(self[keyPath: keyPath]) ? self : nil
+    }
+
     func takeIfNot(_ block: (Self) -> Bool) -> Self? { !block(self) ? self : nil }
+    func takeIfNot<Property>(
+        _ keyPath: KeyPath<Self, Property>,
+        _ block: (Property) -> Bool
+    ) -> Self? {
+        !block(self[keyPath: keyPath]) ? self : nil
+    }
+
     func `let`<Tranformed>(_ block: (Self) throws -> Tranformed) rethrows -> Tranformed { try block(self) }
     func also(_ block: (inout Self) throws -> Void) rethrows -> Self {
         var new = self
@@ -20,10 +34,10 @@ public extension Scope where Self: AnyObject {
         try block(self)
         return self
     }
-    
-    func also<Property>(set keypath: WritableKeyPath<Self, Property>, to value: Property) -> Self {
+
+    func also<Property>(set keyPath: WritableKeyPath<Self, Property>, to value: Property) -> Self {
         var box = self
-        box[keyPath: keypath] = value
+        box[keyPath: keyPath] = value
         return box
     }
 }
