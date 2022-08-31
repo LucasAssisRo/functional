@@ -3,6 +3,8 @@
 public protocol Scope {}
 
 public extension Scope {
+    func `let`<Tranformed>(_ block: (Self) throws -> Tranformed) rethrows -> Tranformed { try block(self) }
+
     func takeIf(_ block: (Self) -> Bool) -> Self? { block(self) ? self : nil }
     func take<Property>(
         if keyPath: KeyPath<Self, Property>,
@@ -19,10 +21,15 @@ public extension Scope {
         !block(self[keyPath: keyPath]) ? self : nil
     }
 
-    func `let`<Tranformed>(_ block: (Self) throws -> Tranformed) rethrows -> Tranformed { try block(self) }
     func also(_ block: (inout Self) throws -> Void) rethrows -> Self {
         var new = self
         try block(&new)
+        return new
+    }
+
+    func also<Property>(set keyPath: WritableKeyPath<Self, Property>, to value: Property) -> Self {
+        var new = self
+        new[keyPath: keyPath] = value
         return new
     }
 }
@@ -35,10 +42,9 @@ public extension Scope where Self: AnyObject {
         return self
     }
 
-    func also<Property>(set keyPath: WritableKeyPath<Self, Property>, to value: Property) -> Self {
-        var box = self
-        box[keyPath: keyPath] = value
-        return box
+    func also<Property>(set keyPath: ReferenceWritableKeyPath<Self, Property>, to value: Property) -> Self {
+        self[keyPath: keyPath] = value
+        return self
     }
 }
 
