@@ -20,6 +20,12 @@ public extension Scope where Self: AnyObject {
         try block(self)
         return self
     }
+    
+    func also<Property>(set keypath: WritableKeyPath<Self, Property>, to value: Property) -> Self {
+        var box = self
+        box[keyPath: keypath] = value
+        return box
+    }
 }
 
 // MARK: - Int + Scope
