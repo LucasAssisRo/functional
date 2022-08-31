@@ -4,16 +4,16 @@ public protocol Scope {}
 
 public extension Scope {
     func takeIf(_ block: (Self) -> Bool) -> Self? { block(self) ? self : nil }
-    func takeIf<Property>(
-        _ keyPath: KeyPath<Self, Property>,
+    func take<Property>(
+        if keyPath: KeyPath<Self, Property>,
         _ block: (Property) -> Bool
     ) -> Self? {
         block(self[keyPath: keyPath]) ? self : nil
     }
 
     func takeIfNot(_ block: (Self) -> Bool) -> Self? { !block(self) ? self : nil }
-    func takeIfNot<Property>(
-        _ keyPath: KeyPath<Self, Property>,
+    func take<Property>(
+        ifNot keyPath: KeyPath<Self, Property>,
         _ block: (Property) -> Bool
     ) -> Self? {
         !block(self[keyPath: keyPath]) ? self : nil
