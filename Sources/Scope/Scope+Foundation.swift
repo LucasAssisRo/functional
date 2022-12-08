@@ -12,4 +12,8 @@
     // MARK: - Date + Functional
 
     extension Date: Scope {}
+
+    // MARK: - Data + Functional
+
+    extension Data: Scope {}
 #endif
