@@ -10,7 +10,7 @@ let package = Package(
             targets: ["Scope"]
         ),
         .library(
-            name: "Scope-dynamic",
+            name: "ScopeDynamic",
             type: .dynamic,
             targets: ["Scope"]
         ),
