@@ -1,21 +1,41 @@
-// swift-tools-version: 5.9
+// swift-tools-version: 5.10
 
 import PackageDescription
 
 let package = Package(
-    name: "Scope",
+    name: "Functional",
     products: [
         .library(
-            name: "Scope",
-            targets: ["Scope"]
+            name: "Functional",
+            targets: ["Functional"]
         ),
         .library(
-            name: "ScopeDynamic",
+            name: "FunctionalDynamic",
             type: .dynamic,
-            targets: ["Scope"]
+            targets: ["Functional"]
         ),
     ],
+    dependencies: [
+        .package(url: "git@github.com:apple/swift-testing.git", .upToNextMajor(from: "0.8.0")),
+    ],
     targets: [
-        .target(name: "Scope"),
+        .target(
+            name: "Functional"
+        ),
+        .target(
+            name: "FunctionalExtensions"
+        ),
+        .target(
+            name: "FunctionalUtilityTypes"
+        ),
+        .testTarget(
+            name: "FunctionalTests",
+            dependencies: [
+                "Functional",
+                "FunctionalExtensions",
+                "FunctionalUtilityTypes",
+                .product(name: "Testing", package: "swift-testing"),
+            ]
+        ),
     ]
 )
