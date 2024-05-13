@@ -7,12 +7,23 @@ let package = Package(
     products: [
         .library(
             name: "Functional",
+            targets: [
+                "Functional",
+                "FunctionalExtensions",
+                "FunctionalUtilityTypes",
+            ]
+        ),
+        .library(
+            name: "FunctionalProtocols",
             targets: ["Functional"]
         ),
         .library(
-            name: "FunctionalDynamic",
-            type: .dynamic,
-            targets: ["Functional"]
+            name: "FunctionalExtensions",
+            targets: ["FunctionalExtensions"]
+        ),
+        .library(
+            name: "FunctionalUtilityTypes",
+            targets: ["FunctionalUtilityTypes"]
         ),
     ],
     dependencies: [
@@ -23,7 +34,10 @@ let package = Package(
             name: "Functional"
         ),
         .target(
-            name: "FunctionalExtensions"
+            name: "FunctionalExtensions",
+            dependencies: [
+                "Functional",
+            ]
         ),
         .target(
             name: "FunctionalUtilityTypes"
