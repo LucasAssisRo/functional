@@ -24,6 +24,10 @@ extension Double: Functional {}
 
 extension String: Functional {}
 
+// MARK: - String.Index + Functional
+
+extension String.Index: Functional {}
+
 // MARK: - Array + Functional
 
 extension Array: Functional {}
