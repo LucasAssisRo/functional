@@ -7,7 +7,7 @@
 
 #if canImport(Foundation)
     import Foundation
-    import Functional
+    import FunctionalProtocols
 
     // MARK: - NSObject + Functional
 

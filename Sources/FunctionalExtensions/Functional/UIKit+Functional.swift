@@ -6,7 +6,7 @@
 //
 
 #if canImport(UIKit)
-    import Functional
+    import FunctionalProtocols
     import UIKit
 
     // MARK: - CGFloat + Functional

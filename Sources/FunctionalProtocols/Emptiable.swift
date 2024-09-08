@@ -12,7 +12,5 @@ public protocol Emptiable {
 }
 
 extension Emptiable {
-    public var isNotEmpty: Bool {
-        !isEmpty
-    }
+    public var isNotEmpty: Bool { !isEmpty }
 }

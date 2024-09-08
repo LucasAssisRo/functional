@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Functional
+import FunctionalProtocols
 
 // MARK: - Int + Functional
 
