@@ -8,14 +8,14 @@ let package = Package(
         .library(
             name: "Functional",
             targets: [
-                "Functional",
+                "FunctionalProtocols",
                 "FunctionalExtensions",
                 "FunctionalUtilityTypes",
             ]
         ),
         .library(
             name: "FunctionalProtocols",
-            targets: ["Functional"]
+            targets: ["FunctionalProtocols"]
         ),
         .library(
             name: "FunctionalExtensions",
@@ -31,12 +31,12 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Functional"
+            name: "FunctionalProtocols"
         ),
         .target(
             name: "FunctionalExtensions",
             dependencies: [
-                "Functional",
+                "FunctionalProtocols",
             ]
         ),
         .target(
@@ -45,7 +45,7 @@ let package = Package(
         .testTarget(
             name: "FunctionalTests",
             dependencies: [
-                "Functional",
+                "FunctionalProtocols",
                 "FunctionalExtensions",
                 "FunctionalUtilityTypes",
                 .product(name: "Testing", package: "swift-testing"),

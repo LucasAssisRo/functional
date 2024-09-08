@@ -23,7 +23,7 @@ extension Functional {
         }
     }
 
-    public func also(_ block: (consuming Self) throws -> Void) rethrows -> Self {
+    public func also(_ block: (Self) throws -> Void) rethrows -> Self {
         try block(self)
         return self
     }

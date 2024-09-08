@@ -5,7 +5,7 @@
 //  Created by Lucas Assis Rodrigues on 5/12/24.
 //
 
-import Functional
+import FunctionalProtocols
 
 // MARK: - String + Emptiable
 
