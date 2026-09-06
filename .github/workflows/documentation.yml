@@ -33,7 +33,7 @@ jobs:
             --target FunctionalExtensions \
             --enable-experimental-combined-documentation \
             --transform-for-static-hosting \
-            --hosting-base-path scope \
+            --hosting-base-path functional \
             --output-path ./docs
 
       - uses: actions/configure-pages@v5
