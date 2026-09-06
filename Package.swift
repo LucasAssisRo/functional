@@ -26,7 +26,9 @@ let package = Package(
             targets: ["FunctionalUtilityTypes"]
         ),
     ],
-    dependencies: [],
+    dependencies: [
+        .package(url: "https://github.com/apple/swift-docc-plugin.git", .upToNextMajor(from: "1.4.3")),
+    ],
     targets: [
         .target(
             name: "FunctionalProtocols"
