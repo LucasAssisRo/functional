@@ -1,3 +1,5 @@
 # Functional
 
-Convenience methods inspired by [Kotlin scope functions](https://kotlinlang.org/docs/scope-functions.html#function-selection).
+Transform, filter and configure any value inline.
+
+[API documentation](https://lucasassisro.github.io/functional/)
