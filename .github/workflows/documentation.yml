@@ -36,6 +36,20 @@ jobs:
             --hosting-base-path functional \
             --output-path ./docs
 
+      - name: Redirect the site root to the documentation
+        run: |
+          cat > ./docs/index.html <<'HTML'
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="utf-8">
+              <meta http-equiv="refresh" content="0; url=./documentation/">
+              <title>Functional</title>
+            </head>
+            <body><a href="./documentation/">Functional documentation</a></body>
+          </html>
+          HTML
+
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
