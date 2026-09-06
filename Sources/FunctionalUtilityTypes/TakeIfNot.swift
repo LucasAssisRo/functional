@@ -1,12 +1,13 @@
 //
 //  TakeIfNot.swift
-//  
+//
 //
 //  Created by Lucas Assis Rodrigues on 5/9/24.
 //
 
 // MARK: - TakeIfNot
 
+/// A stored predicate that discards a source value when it matches.
 public struct TakeIfNot<Source>: ~Copyable, Sendable {
     private let takeIfNot: @Sendable (_ source: Source) -> Bool
     public init(_ takeIfNot: @escaping @Sendable (_ source: Source) -> Bool) {
@@ -24,6 +25,7 @@ public struct TakeIfNot<Source>: ~Copyable, Sendable {
 
 // MARK: - ThrowingTakeIfNot
 
+/// A ``TakeIfNot`` whose predicate can throw.
 public struct ThrowingTakeIfNot<Source>: ~Copyable, Sendable {
     private let takeIfNot: @Sendable (_ source: Source) throws -> Bool
     public init(takeIfNot: @escaping @Sendable (_ source: Source) throws -> Bool) {

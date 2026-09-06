@@ -7,6 +7,7 @@
 
 // MARK: - TakeIf
 
+/// A stored predicate that keeps a source value only when it matches.
 public struct TakeIf<Source>: ~Copyable, Sendable {
     private let takeIf: @Sendable (_ source: Source) -> Bool
     public init(_ takeIf: @escaping @Sendable (_ source: Source) -> Bool) {
@@ -24,6 +25,7 @@ public struct TakeIf<Source>: ~Copyable, Sendable {
 
 // MARK: - ThrowingTakeIf
 
+/// A ``TakeIf`` whose predicate can throw.
 public struct ThrowingTakeIf<Source>: ~Copyable, Sendable {
     private let takeIf: @Sendable (_ source: Source) throws -> Bool
     public init(takeIf: @escaping @Sendable (_ source: Source) throws -> Bool) {
@@ -38,4 +40,3 @@ public struct ThrowingTakeIf<Source>: ~Copyable, Sendable {
         }
     }
 }
-

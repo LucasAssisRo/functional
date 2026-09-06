@@ -7,6 +7,7 @@
 
 // MARK: - Also
 
+/// A stored side effect that mutates a copy of its target and hands it back.
 public struct Also<Target>: ~Copyable, Sendable {
     private let also: @Sendable (_ target: inout Target) -> Void
 
@@ -23,6 +24,7 @@ public struct Also<Target>: ~Copyable, Sendable {
 
 // MARK: - ThrowingAlso
 
+/// An ``Also`` whose mutation can throw.
 public struct ThrowingAlso<Target>: ~Copyable, Sendable {
     private let also: @Sendable (_ target: inout Target) throws -> Void
 
