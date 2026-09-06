@@ -1,4 +1,4 @@
-// swift-tools-version: 5.10
+// swift-tools-version: 6.2
 
 import PackageDescription
 
@@ -26,9 +26,7 @@ let package = Package(
             targets: ["FunctionalUtilityTypes"]
         ),
     ],
-    dependencies: [
-        .package(url: "git@github.com:apple/swift-testing.git", .upToNextMajor(from: "0.8.0")),
-    ],
+    dependencies: [],
     targets: [
         .target(
             name: "FunctionalProtocols"
@@ -48,7 +46,6 @@ let package = Package(
                 "FunctionalProtocols",
                 "FunctionalExtensions",
                 "FunctionalUtilityTypes",
-                .product(name: "Testing", package: "swift-testing"),
             ]
         ),
     ]
