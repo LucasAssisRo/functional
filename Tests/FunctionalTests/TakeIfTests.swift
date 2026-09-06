@@ -1,17 +1,9 @@
-//
-//  TakeIfTests.swift
-//
-//
-//  Created by Lucas Assis Rodrigues on 5/9/24.
-//
-
 import Foundation
 import FunctionalUtilityTypes
 import Testing
 
-@Suite("Take if tests")
-struct TakeIfTests {
-    @Test("Test string take if") func testStringTakeIfNot() throws {
+struct `Take if tests` {
+    @Test func `take if keeps matching strings`() throws {
         let takeIf = TakeIf<String>(\.isEmpty)
         #expect(takeIf("") != nil)
         #expect(takeIf("not empty") == nil)
@@ -26,7 +18,7 @@ struct TakeIfTests {
         try #expect(throwingTakeIf("https://www.test.com") == nil)
     }
 
-    @Test("Test string take if not") func testStringTakeIf() throws {
+    @Test func `take if not discards matching strings`() throws {
         let takeIfNot = TakeIfNot<String>(\.isEmpty)
         #expect(takeIfNot("") == nil)
         #expect(takeIfNot("not empty") != nil)

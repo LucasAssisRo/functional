@@ -1,17 +1,8 @@
-//
-//  AlsoTests.swift
-//
-//
-//  Created by Lucas Assis Rodrigues on 5/9/24.
-//
-
 import FunctionalUtilityTypes
 import Testing
 
-@Suite("Also tests")
-struct AlsoTests {
-    @Test("Test also")
-    func testAlso() throws {
+struct `Also tests` {
+    @Test func `also mutates a copy of the target`() throws {
         let also = Also<Int> { $0 += 1 }
         let a = 1
         #expect(also(a) == 2)
