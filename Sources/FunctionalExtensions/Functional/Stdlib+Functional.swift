@@ -1,10 +1,3 @@
-//
-//  Stdlib+Functional.swift
-//
-//
-//  Created by Lucas Assis Rodrigues on 5/9/24.
-//
-
 import Foundation
 import FunctionalProtocols
 

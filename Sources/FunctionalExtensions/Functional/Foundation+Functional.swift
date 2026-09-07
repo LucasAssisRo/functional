@@ -1,27 +1,20 @@
-//
-//  Foundation+Functional.swift
-//
-//
-//  Created by Lucas Assis Rodrigues on 5/9/24.
-//
-
 #if canImport(Foundation)
-    import Foundation
-    import FunctionalProtocols
+  import Foundation
+  import FunctionalProtocols
 
-    // MARK: - NSObject + Functional
+  // MARK: - NSObject + Functional
 
-    extension NSObject: Functional {}
+  extension NSObject: Functional {}
 
-    // MARK: - URL + Functional
+  // MARK: - URL + Functional
 
-    extension URL: Functional {}
+  extension URL: Functional {}
 
-    // MARK: - Date + Functional
+  // MARK: - Date + Functional
 
-    extension Date: Functional {}
+  extension Date: Functional {}
 
-    // MARK: - Data + Functional
+  // MARK: - Data + Functional
 
-    extension Data: Functional {}
+  extension Data: Functional {}
 #endif

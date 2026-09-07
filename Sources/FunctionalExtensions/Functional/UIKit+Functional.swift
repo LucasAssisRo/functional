@@ -1,23 +1,16 @@
-//
-//  UIKit+Functional.swift
-//
-//
-//  Created by Lucas Assis Rodrigues on 5/9/24.
-//
-
 #if canImport(UIKit)
-    import FunctionalProtocols
-    import UIKit
+  import FunctionalProtocols
+  import UIKit
 
-    // MARK: - CGFloat + Functional
+  // MARK: - CGFloat + Functional
 
-    extension CGFloat: Functional {}
+  extension CGFloat: Functional {}
 
-    // MARK: - CGSize + Functional
+  // MARK: - CGSize + Functional
 
-    extension CGSize: Functional {}
+  extension CGSize: Functional {}
 
-    // MARK: - CGRect + Functional
+  // MARK: - CGRect + Functional
 
-    extension CGRect: Functional {}
+  extension CGRect: Functional {}
 #endif
