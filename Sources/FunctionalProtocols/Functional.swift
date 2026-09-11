@@ -6,7 +6,9 @@ public protocol Functional {}
 
 extension Functional {
   /// Transforms the instance with a closure and returns its result.
-  public func `let`<Tranformed>(_ block: (Self) throws -> Tranformed) rethrows -> Tranformed {
+  public func `let`<Tranformed, Failure: Error>(
+    _ block: (Self) throws(Failure) -> Tranformed,
+  ) throws(Failure) -> Tranformed {
     try block(self)
   }
 
@@ -29,7 +31,7 @@ extension Functional {
   }
 
   /// Runs `block` on the instance and returns it, so calls can be chained.
-  public func also(_ block: (Self) throws -> Void) rethrows -> Self {
+  public func also<Failure: Error>(_ block: (Self) throws(Failure) -> Void) throws(Failure) -> Self {
     try block(self)
     return self
   }
@@ -46,7 +48,7 @@ extension Functional {
 
 extension Functional where Self: AnyObject {
   /// Runs `block` on the instance and returns it, so calls can be chained.
-  public func also(_ block: (Self) throws -> Void) rethrows -> Self {
+  public func also<Failure: Error>(_ block: (Self) throws(Failure) -> Void) throws(Failure) -> Self {
     try block(self)
     return self
   }

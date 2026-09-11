@@ -18,14 +18,14 @@ public struct Also<Target>: ~Copyable, Sendable {
 // MARK: - ThrowingAlso
 
 /// An ``Also`` whose mutation can throw.
-public struct ThrowingAlso<Target>: ~Copyable, Sendable {
-  private let also: @Sendable (_ target: inout Target) throws -> Void
+public struct ThrowingAlso<Target, Failure: Error>: ~Copyable, Sendable {
+  private let also: @Sendable (_ target: inout Target) throws(Failure) -> Void
 
-  public init(_ also: @Sendable @escaping (_ target: inout Target) throws -> Void) {
+  public init(_ also: @Sendable @escaping (_ target: inout Target) throws(Failure) -> Void) {
     self.also = also
   }
 
-  public func callAsFunction(_ target: Target) throws -> Target {
+  public func callAsFunction(_ target: Target) throws(Failure) -> Target {
     var target = target
     try also(&target)
     return consume target

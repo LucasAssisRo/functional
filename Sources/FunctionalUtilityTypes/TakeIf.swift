@@ -19,13 +19,13 @@ public struct TakeIf<Source>: ~Copyable, Sendable {
 // MARK: - ThrowingTakeIf
 
 /// A ``TakeIf`` whose predicate can throw.
-public struct ThrowingTakeIf<Source>: ~Copyable, Sendable {
-  private let takeIf: @Sendable (_ source: Source) throws -> Bool
-  public init(takeIf: @escaping @Sendable (_ source: Source) throws -> Bool) {
+public struct ThrowingTakeIf<Source, Failure: Error>: ~Copyable, Sendable {
+  private let takeIf: @Sendable (_ source: Source) throws(Failure) -> Bool
+  public init(takeIf: @escaping @Sendable (_ source: Source) throws(Failure) -> Bool) {
     self.takeIf = takeIf
   }
 
-  public func callAsFunction(_ source: Source) throws -> Source? {
+  public func callAsFunction(_ source: Source) throws(Failure) -> Source? {
     if try takeIf(source) {
       source
     } else {

@@ -8,12 +8,14 @@ struct `Also tests` {
     #expect(also(a) == 2)
     #expect(also(a) != 3)
 
-    let throwingAlso = ThrowingAlso<Int> { $0 += 1 }
+    let throwingAlso = ThrowingAlso<Int, Never> { $0 += 1 }
     #expect(throws: Never.self) { try throwingAlso(a) }
 
     struct TestError: Error, Equatable {}
 
-    let alwaysThrow = ThrowingAlso<Int> { _ in throw TestError() }
+    let alwaysThrow = ThrowingAlso<Int, TestError> { (_: inout Int) throws(TestError) in
+      throw TestError()
+    }
     #expect(throws: TestError.self) { try alwaysThrow(a) }
   }
 }
