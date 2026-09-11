@@ -7,11 +7,7 @@ let package = Package(
   products: [
     .library(
       name: "Functional",
-      targets: [
-        "FunctionalProtocols",
-        "FunctionalExtensions",
-        "FunctionalUtilityTypes",
-      ],
+      targets: ["Functional"],
     ),
     .library(
       name: "FunctionalProtocols",
@@ -30,6 +26,14 @@ let package = Package(
     .package(url: "https://github.com/apple/swift-docc-plugin.git", .upToNextMajor(from: "1.4.3")),
   ],
   targets: [
+    .target(
+      name: "Functional",
+      dependencies: [
+        "FunctionalProtocols",
+        "FunctionalExtensions",
+        "FunctionalUtilityTypes",
+      ],
+    ),
     .target(
       name: "FunctionalProtocols",
     ),
