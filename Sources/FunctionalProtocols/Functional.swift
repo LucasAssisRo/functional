@@ -4,14 +4,14 @@
 /// configuring its instances inline.
 public protocol Functional {}
 
-public extension Functional {
+extension Functional {
   /// Transforms the instance with a closure and returns its result.
-  func `let`<Tranformed>(_ block: (Self) throws -> Tranformed) rethrows -> Tranformed {
+  public func `let`<Tranformed>(_ block: (Self) throws -> Tranformed) rethrows -> Tranformed {
     try block(self)
   }
 
   /// Returns the instance when it satisfies `block`, otherwise `nil`.
-  func takeIf(_ block: (Self) -> Bool) -> Self? {
+  public func takeIf(_ block: (Self) -> Bool) -> Self? {
     if block(self) {
       self
     } else {
@@ -20,7 +20,7 @@ public extension Functional {
   }
 
   /// Returns the instance when it fails `block`, otherwise `nil`.
-  func takeIfNot(_ block: (Self) -> Bool) -> Self? {
+  public func takeIfNot(_ block: (Self) -> Bool) -> Self? {
     if block(self) == false {
       self
     } else {
@@ -29,13 +29,13 @@ public extension Functional {
   }
 
   /// Runs `block` on the instance and returns it, so calls can be chained.
-  func also(_ block: (Self) throws -> Void) rethrows -> Self {
+  public func also(_ block: (Self) throws -> Void) rethrows -> Self {
     try block(self)
     return self
   }
 
   /// Returns a copy of the instance with `keyPath` set to `value`.
-  func also<Property>(set keyPath: WritableKeyPath<Self, Property>, to value: Property) -> Self {
+  public func also<Property>(set keyPath: WritableKeyPath<Self, Property>, to value: Property) -> Self {
     var new = self
     new[keyPath: keyPath] = value
     return new
@@ -44,15 +44,15 @@ public extension Functional {
 
 // MARK: - Functional + AnyObject
 
-public extension Functional where Self: AnyObject {
+extension Functional where Self: AnyObject {
   /// Runs `block` on the instance and returns it, so calls can be chained.
-  func also(_ block: (Self) throws -> Void) rethrows -> Self {
+  public func also(_ block: (Self) throws -> Void) rethrows -> Self {
     try block(self)
     return self
   }
 
   /// Sets `keyPath` to `value` on the instance itself and returns it.
-  func also<Property>(set keyPath: ReferenceWritableKeyPath<Self, Property>, to value: Property) -> Self {
+  public func also<Property>(set keyPath: ReferenceWritableKeyPath<Self, Property>, to value: Property) -> Self {
     self[keyPath: keyPath] = value
     return self
   }

@@ -6,7 +6,7 @@ public protocol Emptiable {
   var isEmpty: Bool { get }
 }
 
-public extension Emptiable {
+extension Emptiable {
   /// A Boolean value indicating whether the instance holds at least one element.
-  var isNotEmpty: Bool { isEmpty == false }
+  public var isNotEmpty: Bool { isEmpty == false }
 }
