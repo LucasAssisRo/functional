@@ -27,7 +27,7 @@
 --equatable-macro none
 --exponent-case lowercase
 --exponent-grouping enabled
---extension-acl on-extension
+--extension-acl on-declarations
 --extension-mark "MARK: - %t + %c"
 --extension-threshold 0
 --file-macro "#file"
@@ -48,8 +48,9 @@
 --indent-blank-lines false
 --indent-case false
 --indent-strings false
---inferred-types always
+--inferred-types exclude-cond-exprs
 --init-coder-nil false
+--language-mode 0
 --lifecycle 
 --line-after-marks true
 --line-between-guards false
@@ -79,7 +80,7 @@
 --preserve-acronyms 
 --preserve-decls 
 --preserved-property-types Package
---property-types infer-locals-only
+--property-types explicit
 --ranges spaced
 --redundant-async tests-only
 --redundant-optional-binding same-name-only
@@ -98,6 +99,7 @@
 --strip-unused-args always
 --struct-threshold 0
 --suite-name-format preserve
+--swift-version 6.4
 --tab-width unspecified
 --test-case-access-control private
 --test-case-name-format raw-identifiers
@@ -131,4 +133,4 @@
 --xctest-symbols 
 --yoda-swap always
 --disable blankLinesBetweenImports,wrapIfExpressionBodies,wrapIfStatementBodies,wrapPropertyBodies
---enable blockComments,emptyExtensions,ifExpressions,isEmpty,markTypes,noGuardInTests,preferContains,preferCountWhere,preferExplicitFalse,preferFinalClasses,preferFirstWhere,preferFlatMap,preferLazyMap,preferMinOverSorted,preferSwiftTesting,privateStateVariables,redundantExtendedLifetime,redundantSendable,singlePropertyPerLine,sortSwitchCases,testSuiteAccessControl,unusedPrivateDeclarations,urlMacro,validateTestCases
+--enable acronyms,blockComments,emptyExtensions,ifExpressions,isEmpty,markTypes,noGuardInTests,preferContains,preferCountWhere,preferExplicitFalse,preferFinalClasses,preferFirstWhere,preferFlatMap,preferLazyMap,preferMinOverSorted,preferSwiftTesting,privateStateVariables,redundantExtendedLifetime,redundantSendable,singlePropertyPerLine,sortSwitchCases,testSuiteAccessControl,unusedPrivateDeclarations,urlMacro,validateTestCases
